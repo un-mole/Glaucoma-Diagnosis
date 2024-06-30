@@ -1,0 +1,25 @@
+.about {
+    padding: 20px;
+  }
+  
+  .about h1, .about h2 {
+    color: #333;
+  }
+  
+  .about ul {
+    text-align: left;
+    list-style-type: disc;
+    margin: 20px auto;
+    padding: 0;
+    max-width: 600px;
+  }
+  
+  .about a {
+    color: #61dafb;
+    text-decoration: none;
+  }
+  
+  .about a:hover {
+    text-decoration: underline;
+  }
+  

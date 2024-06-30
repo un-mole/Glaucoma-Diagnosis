@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.resize-observer-container {
+  contain: layout size;
+}
+.App {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav.navbar {
+  background-color: #282c34;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav.navbar .logo {
+  height: 40px;
+  margin-right: 20px;
+}
+
+nav.navbar .nav-links {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+nav.navbar .nav-links li {
+  margin: 0 10px;
+}
+
+nav.navbar .nav-links a {
+  text-decoration: none;
+  color: #61dafb;
+}

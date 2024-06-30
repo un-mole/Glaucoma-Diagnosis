@@ -1,0 +1,38 @@
+.home {
+  padding: 10px;
+}
+
+.home h1 {
+  color: #333;
+}
+
+.home-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 20px 0;
+  height: 10rem;
+  width: 10rem;
+}
+
+.full {
+  display: flex;
+  flex-direction: column;
+}
+
+.home ul {
+  text-align: left;
+  list-style-type: disc;
+  margin: 20px auto;
+  padding: 0;
+  max-width: 600px;
+}
+
+.home a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+.home a:hover {
+  text-decoration: underline;
+}

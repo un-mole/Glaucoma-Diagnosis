@@ -1,0 +1,55 @@
+.diagnosis {
+    padding: 20px;
+  }
+  
+  .diagnosis h1 {
+    color: #333;
+  }
+  
+  .diagnosis form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .diagnosis label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .diagnosis input,
+  .diagnosis select {
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+  
+  .diagnosis button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .diagnosis button:hover {
+    background-color: #0056b3;
+  }
+  
+  .prediction-result {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 600px;
+    text-align: left;
+  }
+  
