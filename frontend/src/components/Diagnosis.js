@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "./Diagnosis.css"; // Import CSS file for additional styles if needed
+import "./Diagnosis.css";
 
 function Diagnosis() {
   const [formData, setFormData] = useState({
@@ -16,6 +16,7 @@ function Diagnosis() {
   const [prediction, setPrediction] = useState(null);
 
   const handleChange = (e) => {
+    setPrediction(null);
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -28,7 +29,7 @@ function Diagnosis() {
 
     try {
       const tokenResponse = await fetch("http://localhost:5000/api/token", {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
@@ -36,10 +37,14 @@ function Diagnosis() {
 
       if (!tokenResponse.ok) {
         throw new Error("Failed to fetch token");
+      } else {
+        console.log("tokenResponse", tokenResponse);
       }
 
       const tokenData = await tokenResponse.json();
       const accessToken = tokenData.access_token;
+
+      // console.log("accessToken",accessToken);
 
       const payload = {
         input_data: [
@@ -70,6 +75,8 @@ function Diagnosis() {
         ],
       };
 
+      // console.log("payload",payload);
+
       const scoringResponse = await fetch("http://localhost:5000/api/predict", {
         method: "POST",
         headers: {
@@ -81,12 +88,26 @@ function Diagnosis() {
         }),
       });
 
+      const scoringData = await scoringResponse.json();
+
       if (!scoringResponse.ok) {
-        throw new Error("Failed to fetch prediction");
+        throw new Error("Failed to fetch prediction" + scoringData.error);
       }
 
-      const scoringData = await scoringResponse.json();
-      setPrediction(scoringData);
+      let isGlaucoma = scoringData.predictions[0].values[0][0];
+      if (isGlaucoma === 0) {
+        setPrediction(
+          `You do not have Glaucoma. Probability:  ${
+            scoringData.predictions[0].values[0][1][1] * 100
+          }`
+        );
+      } else {
+        setPrediction(
+          `You may have Glaucoma. Probability:  ${
+            scoringData.predictions[0].values[0][1][1] * 100
+          }`
+        );
+      }
     } catch (error) {
       console.error("Error:", error);
       setPrediction({ error: error.message });
@@ -193,13 +214,15 @@ function Diagnosis() {
           </button>
         </form>
         {prediction && (
-          <div className="mt-4">
-            <h2 className="text-xl font-bold mb-2">Prediction Result</h2>
-            {prediction.error ? (
-              <p className="text-red-500">Error: {prediction.error}</p>
-            ) : (
-              <pre>{JSON.stringify(prediction, null, 2)}</pre>
-            )}
+          <div className="prediction-result">
+            <h2>Prediction Result</h2>
+            <div className="prediction-content">
+              {prediction.error ? (
+                <p>Error: {prediction.error}</p>
+              ) : (
+                <pre>{JSON.stringify(prediction, null, 2)}</pre>
+              )}
+            </div>
           </div>
         )}
       </div>
